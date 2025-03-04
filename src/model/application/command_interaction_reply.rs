@@ -23,7 +23,7 @@ pub struct CommandInteractionReply {
 
 impl CommandInteractionReply {
     pub fn emoji(mut self, emoji: Emoji) -> Self {
-        self.content = Some(emoji.format());
+        self.content = Some(emoji.formatted());
         self
     }
 
@@ -218,19 +218,19 @@ impl CommandInteractionReply {
         self
     }
 
-    pub fn primary_button(mut self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
+    pub fn primary_button(self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
         self.button(_label, _id, emoji, disabled, ButtonStyle::Primary)
     }
 
-    pub fn secondary_button(mut self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
+    pub fn secondary_button(self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
         self.button(_label, _id, emoji, disabled, ButtonStyle::Secondary)
     }
 
-    pub fn success_button(mut self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
+    pub fn success_button(self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
         self.button(_label, _id, emoji, disabled, ButtonStyle::Success)
     }
 
-    pub fn danger_button(mut self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
+    pub fn danger_button(self, _label: impl Into<String>, _id: impl Into<String>, emoji: Option<Emoji>, disabled: bool) -> Self {
         self.button(_label, _id, emoji, disabled, ButtonStyle::Danger)
     }
 
