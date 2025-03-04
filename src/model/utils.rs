@@ -153,13 +153,13 @@ pub mod emojis {
     use serde::Deserializer;
 
     use super::SequenceToMapVisitor;
-    use crate::model::guild::Emoji;
+    use crate::model::guild::CustomEmoji;
     use crate::model::id::EmojiId;
 
     pub fn deserialize<'de, D: Deserializer<'de>>(
         deserializer: D,
-    ) -> Result<HashMap<EmojiId, Emoji>, D::Error> {
-        deserializer.deserialize_seq(SequenceToMapVisitor::new(|emoji: &Emoji| emoji.id))
+    ) -> Result<HashMap<EmojiId, CustomEmoji>, D::Error> {
+        deserializer.deserialize_seq(SequenceToMapVisitor::new(|emoji: &CustomEmoji| emoji.id))
     }
 
     pub use super::serialize_map_values as serialize;

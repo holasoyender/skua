@@ -221,7 +221,7 @@ impl Reaction {
         }
     }
 
-    /// Retrieves the list of [`User`]s who have reacted to a [`Message`] with a certain [`Emoji`].
+    /// Retrieves the list of [`User`]s who have reacted to a [`Message`] with a certain [`CustomEmoji`].
     ///
     /// The default `limit` is `50` - specify otherwise to receive a different maximum number of
     /// users. The maximum that may be retrieve at a time is `100`, if a greater number is provided
@@ -287,11 +287,11 @@ impl Reaction {
 #[derive(Clone, Debug, Eq, PartialEq, Hash)]
 #[non_exhaustive]
 pub enum ReactionType {
-    /// A reaction with a [`Guild`]s custom [`Emoji`], which is unique to the guild.
+    /// A reaction with a [`Guild`]s custom [`CustomEmoji`], which is unique to the guild.
     Custom {
         /// Whether the emoji is animated.
         animated: bool,
-        /// The Id of the custom [`Emoji`].
+        /// The Id of the custom [`CustomEmoji`].
         id: EmojiId,
         /// The name of the custom emoji. This is primarily used for decoration and distinguishing
         /// the emoji client-side.
@@ -429,8 +429,8 @@ impl From<char> for ReactionType {
     }
 }
 
-impl From<Emoji> for ReactionType {
-    fn from(emoji: Emoji) -> ReactionType {
+impl From<CustomEmoji> for ReactionType {
+    fn from(emoji: CustomEmoji) -> ReactionType {
         ReactionType::Custom {
             animated: emoji.animated,
             id: emoji.id,

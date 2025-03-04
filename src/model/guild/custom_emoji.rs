@@ -21,7 +21,7 @@ use crate::model::ModelError;
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[non_exhaustive]
-pub struct Emoji {
+pub struct CustomEmoji {
     /// Whether the emoji is animated.
     #[serde(default)]
     pub animated: bool,
@@ -53,7 +53,7 @@ pub struct Emoji {
 }
 
 #[cfg(feature = "model")]
-impl Emoji {
+impl CustomEmoji {
     /// Deletes the emoji. This method requires the cache to fetch the guild ID.
     ///
     /// **Note**: If the emoji was created by the current user, requires either the [Create Guild
@@ -66,9 +66,9 @@ impl Emoji {
     ///
     /// ```rust,no_run
     /// # use serenity::client::Context;
-    /// # use serenity::model::prelude::Emoji;
+    /// # use serenity::model::prelude::CustomEmoji;
     /// #
-    /// # async fn example(ctx: &Context, emoji: Emoji) -> Result<(), Box<dyn std::error::Error>> {
+    /// # async fn example(ctx: &Context, emoji: CustomEmoji) -> Result<(), Box<dyn std::error::Error>> {
     /// // assuming emoji has been set already
     /// match emoji.delete(&ctx).await {
     ///     Ok(()) => println!("Emoji deleted."),
@@ -127,9 +127,9 @@ impl Emoji {
     ///
     /// ```rust,no_run
     /// # use serenity::cache::Cache;
-    /// # use serenity::model::guild::Emoji;
+    /// # use serenity::model::guild::CustomEmoji;
     /// #
-    /// # fn run(cache: Cache, emoji: Emoji) {
+    /// # fn run(cache: Cache, emoji: CustomEmoji) {
     /// // assuming emoji has been set already
     /// if let Some(guild_id) = emoji.find_guild_id(&cache) {
     ///     println!("{} is owned by {}", emoji.name, guild_id);
@@ -170,9 +170,9 @@ impl Emoji {
     /// Print the direct link to the given emoji:
     ///
     /// ```rust,no_run
-    /// # use serenity::model::guild::Emoji;
+    /// # use serenity::model::guild::CustomEmoji;
     /// #
-    /// # fn run(emoji: Emoji) {
+    /// # fn run(emoji: CustomEmoji) {
     /// // assuming emoji has been set already
     /// println!("Direct link to emoji image: {}", emoji.url());
     /// # }
@@ -185,7 +185,7 @@ impl Emoji {
     }
 }
 
-impl fmt::Display for Emoji {
+impl fmt::Display for CustomEmoji {
     /// Formats the emoji into a string that will cause Discord clients to render the emoji.
     ///
     /// This is in the format of either `<:NAME:EMOJI_ID>` for normal emojis, or
@@ -203,16 +203,16 @@ impl fmt::Display for Emoji {
     }
 }
 
-impl From<Emoji> for EmojiId {
-    /// Gets the Id of an [`Emoji`].
-    fn from(emoji: Emoji) -> EmojiId {
+impl From<CustomEmoji> for EmojiId {
+    /// Gets the Id of an [`CustomEmoji`].
+    fn from(emoji: CustomEmoji) -> EmojiId {
         emoji.id
     }
 }
 
-impl From<&Emoji> for EmojiId {
-    /// Gets the Id of an [`Emoji`].
-    fn from(emoji: &Emoji) -> EmojiId {
+impl From<&CustomEmoji> for EmojiId {
+    /// Gets the Id of an [`CustomEmoji`].
+    fn from(emoji: &CustomEmoji) -> EmojiId {
         emoji.id
     }
 }

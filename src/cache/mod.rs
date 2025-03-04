@@ -5,7 +5,7 @@
 //!
 //! # Use by Models
 //!
-//! Most models of Discord objects, such as the [`Message`], [`GuildChannel`], or [`Emoji`], have
+//! Most models of Discord objects, such as the [`Message`], [`GuildChannel`], or [`CustomEmoji`], have
 //! methods for interacting with that single instance. This feature is only compiled if the `model`
 //! feature is enabled. An example of this is [`Guild::edit`], which performs a check to ensure that
 //! the current user has the [Manage Guild] permission prior to actually performing the HTTP
@@ -183,7 +183,7 @@ pub struct Cache {
 
     // Guilds cache:
     // ---
-    /// A map of guilds with full data available. This includes data like [`Role`]s and [`Emoji`]s
+    /// A map of guilds with full data available. This includes data like [`Role`]s and [`CustomEmoji`]s
     /// that are not available through the REST API.
     pub(crate) guilds: MaybeMap<GuildId, Guild>,
     /// A list of guilds which are "unavailable".

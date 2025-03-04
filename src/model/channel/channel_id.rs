@@ -106,7 +106,7 @@ impl ChannelId {
         http.as_ref().create_permission(self, data.id, &data, None).await
     }
 
-    /// React to a [`Message`] with a custom [`Emoji`] or unicode character.
+    /// React to a [`Message`] with a custom [`CustomEmoji`] or unicode character.
     ///
     /// [`Message::react`] may be a more suited method of reacting in most cases.
     ///
@@ -591,7 +591,7 @@ impl ChannelId {
         http.as_ref().get_pins(self).await
     }
 
-    /// Gets the list of [`User`]s who have reacted to a [`Message`] with a certain [`Emoji`].
+    /// Gets the list of [`User`]s who have reacted to a [`Message`] with a certain [`CustomEmoji`].
     ///
     /// The default `limit` is `50` - specify otherwise to receive a different maximum number of
     /// users. The maximum that may be retrieve at a time is `100`, if a greater number is provided
@@ -603,7 +603,7 @@ impl ChannelId {
     /// **Note**: Requires the [Read Message History] permission.
     ///
     /// **Note**: If the passed reaction_type is a custom guild emoji, it must contain the name.
-    /// So, [`Emoji`] or [`EmojiIdentifier`] will always work, [`ReactionType`] only if
+    /// So, [`CustomEmoji`] or [`EmojiIdentifier`] will always work, [`ReactionType`] only if
     /// [`ReactionType::Custom::name`] is Some, and **[`EmojiId`] will never work**.
     ///
     /// # Errors

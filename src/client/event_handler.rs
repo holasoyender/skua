@@ -186,7 +186,7 @@ event_handler! {
     /// Dispatched when the emojis are updated.
     ///
     /// Provides the guild's id and the new state of the emojis in the guild.
-    GuildEmojisUpdate { guild_id: GuildId, current_state: HashMap<EmojiId, Emoji> } => async fn guild_emojis_update(&self, ctx: Context);
+    GuildEmojisUpdate { guild_id: GuildId, current_state: HashMap<EmojiId, CustomEmoji> } => async fn guild_emojis_update(&self, ctx: Context);
 
     /// Dispatched when a guild's integration is added, updated or removed.
     ///

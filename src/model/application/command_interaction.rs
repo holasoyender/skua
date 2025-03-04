@@ -20,6 +20,7 @@ use crate::http::{CacheHttp, Http};
 use crate::internal::prelude::*;
 use crate::json::{self, JsonError};
 use crate::model::application::{CommandOptionType, CommandType};
+use crate::model::application::command_interaction_reply::CommandInteractionReply;
 use crate::model::channel::{Attachment, Message, PartialChannel};
 use crate::model::guild::{Member, PartialMember, Role};
 use crate::model::id::{
@@ -88,6 +89,10 @@ pub struct CommandInteraction {
     pub authorizing_integration_owners: AuthorizingIntegrationOwners,
     /// The context where the interaction was triggered from.
     pub context: Option<InteractionContext>,
+
+    // The reply for the interaction.
+    #[serde(skip)]
+    reply: CommandInteractionReply
 }
 
 #[cfg(feature = "model")]
@@ -99,6 +104,11 @@ impl CommandInteraction {
     /// Returns an [`Error::Http`] if there is no interaction response.
     pub async fn get_response(&self, http: impl AsRef<Http>) -> Result<Message> {
         http.as_ref().get_original_interaction_response(&self.token).await
+    }
+
+    /// Gets the interaction reply.
+    pub fn get_reply(&self) -> &CommandInteractionReply {
+        &self.reply
     }
 
     /// Creates a response to the interaction received.
@@ -116,6 +126,11 @@ impl CommandInteraction {
         builder: CreateInteractionResponse,
     ) -> Result<()> {
         builder.execute(cache_http, (self.id, &self.token)).await
+    }
+
+    /// Creates a reply to the interaction received.
+    pub fn create_reply(&self) -> CommandInteractionReply {
+        self.reply.clone()
     }
 
     /// Edits the initial interaction response.
@@ -216,8 +231,9 @@ impl CommandInteraction {
     ///
     /// Returns an [`Error::Http`] if the API returns an error, or an [`Error::Json`] if there is
     /// an error in deserializing the API response.
-    pub async fn defer(&self, cache_http: impl CacheHttp) -> Result<()> {
+    pub async fn defer(&mut self, cache_http: impl CacheHttp) -> Result<()> {
         let builder = CreateInteractionResponse::Defer(CreateInteractionResponseMessage::default());
+        self.reply.deferred = true;
         self.create_response(cache_http, builder).await
     }
 
@@ -227,10 +243,12 @@ impl CommandInteraction {
     ///
     /// May also return an [`Error::Http`] if the API returns an error, or an [`Error::Json`] if
     /// there is an error in deserializing the API response.
-    pub async fn defer_ephemeral(&self, cache_http: impl CacheHttp) -> Result<()> {
+    pub async fn defer_ephemeral(&mut self, cache_http: impl CacheHttp) -> Result<()> {
         let builder = CreateInteractionResponse::Defer(
             CreateInteractionResponseMessage::new().ephemeral(true),
         );
+        self.reply.deferred = true;
+
         self.create_response(cache_http, builder).await
     }
 

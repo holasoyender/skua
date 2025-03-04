@@ -1,7 +1,7 @@
 use std::fmt::{self as fmt, Write};
 use std::ops::Add;
 
-use crate::model::guild::Emoji;
+use crate::model::guild::CustomEmoji;
 use crate::model::id::{ChannelId, RoleId, UserId};
 use crate::model::mention::Mentionable;
 
@@ -18,7 +18,7 @@ use crate::model::mention::Mentionable;
 /// ```rust,no_run
 /// # use serenity::model::prelude::*;
 /// #
-/// # fn run(user: UserId, emoji: Emoji) {
+/// # fn run(user: UserId, emoji: CustomEmoji) {
 /// #
 /// use serenity::utils::MessageBuilder;
 ///
@@ -125,7 +125,7 @@ impl MessageBuilder {
 
     /// Displays the given emoji in the built message.
     ///
-    /// Refer to [`Emoji`]s [Display implementation] for more information on how this is formatted.
+    /// Refer to [`CustomEmoji`]s [Display implementation] for more information on how this is formatted.
     ///
     /// # Examples
     ///
@@ -133,11 +133,11 @@ impl MessageBuilder {
     ///
     /// ```rust
     /// # use serenity::json::{json, from_value};
-    /// # use serenity::model::guild::Emoji;
+    /// # use serenity::model::guild::CustomEmoji;
     /// # use serenity::model::id::EmojiId;
     /// # use serenity::utils::MessageBuilder;
     ///
-    /// # let emoji = from_value::<Emoji>(json!({
+    /// # let emoji = from_value::<CustomEmoji>(json!({
     /// #     "id": EmojiId::new(302516740095606785),
     /// #     "name": "smugAnimeFace",
     /// # })).unwrap();
@@ -147,8 +147,8 @@ impl MessageBuilder {
     /// assert_eq!(message, "foo <:smugAnimeFace:302516740095606785>.");
     /// ```
     ///
-    /// [Display implementation]: crate::model::guild::Emoji#impl-Display
-    pub fn emoji(&mut self, emoji: &Emoji) -> &mut Self {
+    /// [Display implementation]: crate::model::guild::CustomEmoji#impl-Display
+    pub fn emoji(&mut self, emoji: &CustomEmoji) -> &mut Self {
         self.push_(&emoji);
         self
     }
@@ -1196,7 +1196,7 @@ mod test {
     #[test]
     fn mentions() {
         let content_emoji = MessageBuilder::new()
-            .emoji(&Emoji {
+            .emoji(&CustomEmoji {
                 animated: false,
                 available: true,
                 id: EmojiId::new(32),

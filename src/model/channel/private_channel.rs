@@ -47,7 +47,7 @@ impl PrivateChannel {
         self.id.broadcast_typing(http).await
     }
 
-    /// React to a [`Message`] with a custom [`Emoji`] or unicode character.
+    /// React to a [`Message`] with a custom [`CustomEmoji`] or unicode character.
     ///
     /// [`Message::react`] may be a more suited method of reacting in most cases.
     ///
@@ -203,7 +203,7 @@ impl PrivateChannel {
         format!("DM with {}", self.recipient.tag())
     }
 
-    /// Gets the list of [`User`]s who have reacted to a [`Message`] with a certain [`Emoji`].
+    /// Gets the list of [`User`]s who have reacted to a [`Message`] with a certain [`CustomEmoji`].
     ///
     /// The default `limit` is `50` - specify otherwise to receive a different maximum number of
     /// users. The maximum that may be retrieve at a time is `100`, if a greater number is provided

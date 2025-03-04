@@ -499,7 +499,7 @@ impl Http {
         guild_id: GuildId,
         map: &Value,
         audit_log_reason: Option<&str>,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         self.fire(Request {
             body: Some(to_vec(map)?),
             multipart: None,
@@ -518,7 +518,7 @@ impl Http {
     /// See [`Context::create_application_emoji`] for required fields.
     ///
     /// [`Context::create_application_emoji`]: crate::client::Context::create_application_emoji
-    pub async fn create_application_emoji(&self, map: &impl serde::Serialize) -> Result<Emoji> {
+    pub async fn create_application_emoji(&self, map: &impl serde::Serialize) -> Result<CustomEmoji> {
         self.fire(Request {
             body: Some(to_vec(map)?),
             multipart: None,
@@ -1617,7 +1617,7 @@ impl Http {
         emoji_id: EmojiId,
         map: &Value,
         audit_log_reason: Option<&str>,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         let body = to_vec(map)?;
 
         self.fire(Request {
@@ -1643,7 +1643,7 @@ impl Http {
         &self,
         emoji_id: EmojiId,
         map: &impl serde::Serialize,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         self.fire(Request {
             body: Some(to_vec(map)?),
             multipart: None,
@@ -3304,7 +3304,7 @@ impl Http {
     }
 
     /// Gets all emojis of a guild.
-    pub async fn get_emojis(&self, guild_id: GuildId) -> Result<Vec<Emoji>> {
+    pub async fn get_emojis(&self, guild_id: GuildId) -> Result<Vec<CustomEmoji>> {
         self.fire(Request {
             body: None,
             multipart: None,
@@ -3319,7 +3319,7 @@ impl Http {
     }
 
     /// Gets information about an emoji in a guild.
-    pub async fn get_emoji(&self, guild_id: GuildId, emoji_id: EmojiId) -> Result<Emoji> {
+    pub async fn get_emoji(&self, guild_id: GuildId, emoji_id: EmojiId) -> Result<CustomEmoji> {
         self.fire(Request {
             body: None,
             multipart: None,
@@ -3335,11 +3335,11 @@ impl Http {
     }
 
     /// Gets all emojis for the current application.
-    pub async fn get_application_emojis(&self) -> Result<Vec<Emoji>> {
+    pub async fn get_application_emojis(&self) -> Result<Vec<CustomEmoji>> {
         // Why, discord...
         #[derive(Deserialize)]
         struct ApplicationEmojis {
-            items: Vec<Emoji>,
+            items: Vec<CustomEmoji>,
         }
 
         let result: ApplicationEmojis = self
@@ -3359,7 +3359,7 @@ impl Http {
     }
 
     /// Gets information about an application emoji.
-    pub async fn get_application_emoji(&self, emoji_id: EmojiId) -> Result<Emoji> {
+    pub async fn get_application_emoji(&self, emoji_id: EmojiId) -> Result<CustomEmoji> {
         self.fire(Request {
             body: None,
             multipart: None,

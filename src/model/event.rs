@@ -203,7 +203,7 @@ pub struct GuildDeleteEvent {
 #[non_exhaustive]
 pub struct GuildEmojisUpdateEvent {
     #[serde(with = "emojis")]
-    pub emojis: HashMap<EmojiId, Emoji>,
+    pub emojis: HashMap<EmojiId, CustomEmoji>,
     pub guild_id: GuildId,
 }
 

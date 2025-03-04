@@ -4,7 +4,7 @@ use super::ArgumentConvert;
 use crate::model::prelude::*;
 use crate::prelude::*;
 
-/// Error that can be returned from [`Emoji::convert`].
+/// Error that can be returned from [`CustomEmoji::convert`].
 #[non_exhaustive]
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 pub enum EmojiParseError {
@@ -29,7 +29,7 @@ impl fmt::Display for EmojiParseError {
     }
 }
 
-/// Look up a [`Emoji`].
+/// Look up a [`CustomEmoji`].
 ///
 /// Requires the cache feature to be enabled.
 ///
@@ -38,7 +38,7 @@ impl fmt::Display for EmojiParseError {
 /// 2. [Lookup by extracting ID from the emoji](`crate::utils::parse_emoji`).
 /// 3. Lookup by name.
 #[async_trait::async_trait]
-impl ArgumentConvert for Emoji {
+impl ArgumentConvert for CustomEmoji {
     type Err = EmojiParseError;
 
     async fn convert(

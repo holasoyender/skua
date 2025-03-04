@@ -1,4 +1,4 @@
-use crate::model::guild::Emoji;
+use crate::model::guild::CustomEmoji;
 use crate::model::id::GuildId;
 use crate::model::misc::ImageHash;
 use crate::model::sticker::Sticker;
@@ -22,7 +22,7 @@ pub struct GuildPreview {
     /// The guild discovery splash hash it it has one.
     pub discovery_splash: Option<ImageHash>,
     /// The custom guild emojis.
-    pub emojis: Vec<Emoji>,
+    pub emojis: Vec<CustomEmoji>,
     /// The guild features. See [`Guild::features`]
     ///
     /// [`Guild::features`]: super::Guild::features

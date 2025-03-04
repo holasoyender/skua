@@ -400,7 +400,7 @@ impl GuildId {
         http: impl AsRef<Http>,
         name: &str,
         image: &str,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         let map = json!({
             "name": name,
             "image": image,
@@ -507,7 +507,7 @@ impl GuildId {
         http.as_ref().delete_guild(self).await
     }
 
-    /// Deletes an [`Emoji`] from the guild.
+    /// Deletes an [`CustomEmoji`] from the guild.
     ///
     /// **Note**: If the emoji was created by the current user, requires either the [Create Guild
     /// Expressions] or the [Manage Guild Expressions] permission. Otherwise, the [Manage Guild
@@ -630,9 +630,9 @@ impl GuildId {
         builder.execute(cache_http, self).await
     }
 
-    /// Edits an [`Emoji`]'s name in the guild.
+    /// Edits an [`CustomEmoji`]'s name in the guild.
     ///
-    /// Also see [`Emoji::edit`] if you have the `cache` and `methods` features enabled.
+    /// Also see [`CustomEmoji::edit`] if you have the `cache` and `methods` features enabled.
     ///
     /// **Note**: If the emoji was created by the current user, requires either the [Create Guild
     /// Expressions] or the [Manage Guild Expressions] permission. Otherwise, the [Manage Guild
@@ -651,7 +651,7 @@ impl GuildId {
         http: impl AsRef<Http>,
         emoji_id: impl Into<EmojiId>,
         name: &str,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         let map = json!({
             "name": name,
         });
@@ -972,23 +972,23 @@ impl GuildId {
         http.as_ref().get_guild_with_counts(self).await
     }
 
-    /// Gets all [`Emoji`]s of this guild via HTTP.
+    /// Gets all [`CustomEmoji`]s of this guild via HTTP.
     ///
     /// # Errors
     ///
     /// Returns an [`Error::Http`] if the guild is unavailable.
     #[inline]
-    pub async fn emojis(self, http: impl AsRef<Http>) -> Result<Vec<Emoji>> {
+    pub async fn emojis(self, http: impl AsRef<Http>) -> Result<Vec<CustomEmoji>> {
         http.as_ref().get_emojis(self).await
     }
 
-    /// Gets an [`Emoji`] of this guild by its ID via HTTP.
+    /// Gets an [`CustomEmoji`] of this guild by its ID via HTTP.
     ///
     /// # Errors
     ///
     /// Returns an [`Error::Http`] if an emoji with that id does not exist.
     #[inline]
-    pub async fn emoji(self, http: impl AsRef<Http>, emoji_id: EmojiId) -> Result<Emoji> {
+    pub async fn emoji(self, http: impl AsRef<Http>, emoji_id: EmojiId) -> Result<CustomEmoji> {
         http.as_ref().get_emoji(self, emoji_id).await
     }
 

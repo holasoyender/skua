@@ -17,6 +17,8 @@ pub use modal_interaction::*;
 mod oauth;
 pub use oauth::*;
 mod ping_interaction;
+mod command_interaction_reply;
+
 pub use ping_interaction::*;
 
 use super::guild::PartialGuild;

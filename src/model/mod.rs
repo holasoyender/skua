@@ -39,6 +39,7 @@ pub mod timestamp;
 pub mod user;
 pub mod voice;
 pub mod webhook;
+pub mod emoji;
 
 #[cfg(feature = "voice_model")]
 pub use serenity_voice_model as voice_gateway;

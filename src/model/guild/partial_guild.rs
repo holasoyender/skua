@@ -83,7 +83,7 @@ pub struct PartialGuild {
     pub roles: HashMap<RoleId, Role>,
     /// All of the guild's custom emojis.
     #[serde(with = "emojis")]
-    pub emojis: HashMap<EmojiId, Emoji>,
+    pub emojis: HashMap<EmojiId, CustomEmoji>,
     /// The guild features. More information available at [`discord documentation`].
     ///
     /// The following is a list of known features:
@@ -457,7 +457,7 @@ impl PartialGuild {
         http: impl AsRef<Http>,
         name: &str,
         image: &str,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         self.id.create_emoji(http, name, image).await
     }
 
@@ -670,7 +670,7 @@ impl PartialGuild {
         self.id.delete(http).await
     }
 
-    /// Deletes an [`Emoji`] from the guild.
+    /// Deletes an [`CustomEmoji`] from the guild.
     ///
     /// **Note**: If the emoji was created by the current user, requires either the [Create Guild
     /// Expressions] or the [Manage Guild Expressions] permission. Otherwise, the [Manage Guild
@@ -782,9 +782,9 @@ impl PartialGuild {
         Ok(())
     }
 
-    /// Edits an [`Emoji`]'s name in the guild.
+    /// Edits an [`CustomEmoji`]'s name in the guild.
     ///
-    /// Also see [`Emoji::edit`] if you have the `cache` and `methods` features enabled.
+    /// Also see [`CustomEmoji::edit`] if you have the `cache` and `methods` features enabled.
     ///
     /// **Note**: If the emoji was created by the current user, requires either the [Create Guild
     /// Expressions] or the [Manage Guild Expressions] permission. Otherwise, the [Manage Guild
@@ -803,7 +803,7 @@ impl PartialGuild {
         http: impl AsRef<Http>,
         emoji_id: impl Into<EmojiId>,
         name: &str,
-    ) -> Result<Emoji> {
+    ) -> Result<CustomEmoji> {
         self.id.edit_emoji(http, emoji_id, name).await
     }
 
@@ -1205,23 +1205,23 @@ impl PartialGuild {
         self.banner.as_ref().map(|banner| cdn!("/banners/{}/{}.webp", self.id, banner))
     }
 
-    /// Gets all [`Emoji`]s of this guild via HTTP.
+    /// Gets all [`CustomEmoji`]s of this guild via HTTP.
     ///
     /// # Errors
     ///
     /// Returns [`Error::Http`] if the guild is unavailable.
     #[inline]
-    pub async fn emojis(&self, http: impl AsRef<Http>) -> Result<Vec<Emoji>> {
+    pub async fn emojis(&self, http: impl AsRef<Http>) -> Result<Vec<CustomEmoji>> {
         self.id.emojis(http).await
     }
 
-    /// Gets an [`Emoji`] of this guild by its ID via HTTP.
+    /// Gets an [`CustomEmoji`] of this guild by its ID via HTTP.
     ///
     /// # Errors
     ///
-    /// Returns [`Error::Http`] if an [`Emoji`] with the given Id does not exist for the guild.
+    /// Returns [`Error::Http`] if an [`CustomEmoji`] with the given Id does not exist for the guild.
     #[inline]
-    pub async fn emoji(&self, http: impl AsRef<Http>, emoji_id: EmojiId) -> Result<Emoji> {
+    pub async fn emoji(&self, http: impl AsRef<Http>, emoji_id: EmojiId) -> Result<CustomEmoji> {
         self.id.emoji(http, emoji_id).await
     }
 

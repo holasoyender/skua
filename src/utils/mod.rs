@@ -268,7 +268,7 @@ pub fn parse_channel(mention: impl AsRef<str>) -> Option<ChannelId> {
 /// assert!(parse_emoji("<:smugAnimeFace:302516740095606785").is_none());
 /// ```
 ///
-/// [`Emoji`]: crate::model::guild::Emoji
+/// [`Emoji`]: crate::model::guild::CustomEmoji
 pub fn parse_emoji(mention: impl AsRef<str>) -> Option<EmojiIdentifier> {
     let mention = mention.as_ref();
 

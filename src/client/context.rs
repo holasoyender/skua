@@ -315,7 +315,7 @@ impl Context {
     /// # Errors
     ///
     /// Returns an error if the Application ID is not known.
-    pub async fn get_application_emojis(&self) -> Result<Vec<Emoji>> {
+    pub async fn get_application_emojis(&self) -> Result<Vec<CustomEmoji>> {
         self.http.get_application_emojis().await
     }
 
@@ -324,7 +324,7 @@ impl Context {
     /// # Errors
     ///
     /// Returns an error if the emoji does not exist.
-    pub async fn get_application_emoji(&self, emoji_id: EmojiId) -> Result<Emoji> {
+    pub async fn get_application_emoji(&self, emoji_id: EmojiId) -> Result<CustomEmoji> {
         self.http.get_application_emoji(emoji_id).await
     }
 
@@ -334,7 +334,7 @@ impl Context {
     ///
     /// See [`Guild::create_emoji`] for information about name and filesize requirements. This
     /// method will error if said requirements are not met.
-    pub async fn create_application_emoji(&self, name: &str, image: &str) -> Result<Emoji> {
+    pub async fn create_application_emoji(&self, name: &str, image: &str) -> Result<CustomEmoji> {
         #[derive(serde::Serialize)]
         struct CreateEmoji<'a> {
             name: &'a str,
@@ -354,7 +354,7 @@ impl Context {
     /// # Errors
     ///
     /// Returns an error if the emoji does not exist.
-    pub async fn edit_application_emoji(&self, emoji_id: EmojiId, name: &str) -> Result<Emoji> {
+    pub async fn edit_application_emoji(&self, emoji_id: EmojiId, name: &str) -> Result<CustomEmoji> {
         #[derive(serde::Serialize)]
         struct EditEmoji<'a> {
             name: &'a str,
