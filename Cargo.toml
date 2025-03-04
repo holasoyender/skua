@@ -1,8 +1,8 @@
 [package]
-name = "serenity"
+name = "skua"
 version = "0.12.4"
 authors = ["Alex M. M. <acdenissk69@gmail.com>"]
-description = "A Rust library for the Discord API."
+description = "Custom fork of Serenity, the Rust library for the Discord API."
 readme = "README.md"
 include = ["src/**/*", "LICENSE.md", "README.md", "CHANGELOG.md", "build.rs"]
 
@@ -19,8 +19,8 @@ members = ["examples/*"]
 
 [workspace.package]
 documentation = "https://docs.rs/serenity"
-homepage = "https://github.com/serenity-rs/serenity"
-repository = "https://github.com/serenity-rs/serenity.git"
+homepage = "https://github.com/holasoyender/skua"
+repository = "https://github.com/holasoyender/skua.git"
 keywords = ["discord", "api"]
 license = "ISC"
 edition = "2021"
