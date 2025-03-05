@@ -1,9 +1,9 @@
 use std::env;
 
-use serenity::async_trait;
-use serenity::model::channel::Message;
-use serenity::model::gateway::{Presence, Ready};
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::model::channel::Message;
+use skua::model::gateway::{Presence, Ready};
+use skua::prelude::*;
 
 struct Handler;
 

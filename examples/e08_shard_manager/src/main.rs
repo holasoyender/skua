@@ -22,9 +22,9 @@
 use std::env;
 use std::time::Duration;
 
-use serenity::async_trait;
-use serenity::model::gateway::Ready;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::model::gateway::Ready;
+use skua::prelude::*;
 use tokio::time::sleep;
 
 struct Handler;

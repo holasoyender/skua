@@ -3,8 +3,8 @@
 //! This can be enabled by specifying the feature in the dependency section:
 //!
 //! ```toml
-//! [dependencies.serenity]
-//! git = "https://github.com/serenity-rs/serenity.git"
+//! [dependencies.skua]
+//! git = "https://github.com/holasoyender/skua.git"
 //! features = ["framework", "standard_framework"]
 //! ```
 #![allow(deprecated)] // We recommend migrating to poise, instead of using the standard command framework.
@@ -14,15 +14,15 @@ use std::collections::HashSet;
 use std::env;
 use std::sync::Arc;
 
-use serenity::async_trait;
-use serenity::framework::standard::macros::group;
-use serenity::framework::standard::Configuration;
-use serenity::framework::StandardFramework;
-use serenity::gateway::ShardManager;
-use serenity::http::Http;
-use serenity::model::event::ResumedEvent;
-use serenity::model::gateway::Ready;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::framework::standard::macros::group;
+use skua::framework::standard::Configuration;
+use skua::framework::StandardFramework;
+use skua::gateway::ShardManager;
+use skua::http::Http;
+use skua::model::event::ResumedEvent;
+use skua::model::gateway::Ready;
+use skua::prelude::*;
 use tracing::{error, info};
 
 use crate::commands::math::*;

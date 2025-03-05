@@ -46,7 +46,7 @@ use crate::utils::{CreateQuickModal, QuickModalResponse};
 ///
 /// [Discord docs](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object).
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Serialize)]
 #[serde(remote = "Self")]
 #[non_exhaustive]
 pub struct CommandInteraction {

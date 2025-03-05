@@ -1,7 +1,7 @@
-use serenity::framework::standard::macros::command;
-use serenity::framework::standard::{Args, CommandResult};
-use serenity::model::prelude::*;
-use serenity::prelude::*;
+use skua::framework::standard::macros::command;
+use skua::framework::standard::{Args, CommandResult};
+use skua::model::prelude::*;
+use skua::prelude::*;
 
 #[command]
 pub async fn multiply(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {

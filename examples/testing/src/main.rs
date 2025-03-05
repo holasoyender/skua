@@ -1,13 +1,13 @@
-use serenity::builder::*;
-use serenity::model::prelude::*;
-use serenity::prelude::*;
+use skua::builder::*;
+use skua::model::prelude::*;
+use skua::prelude::*;
 
 mod model_type_sizes;
 
 const IMAGE_URL: &str = "https://raw.githubusercontent.com/serenity-rs/serenity/current/logo.png";
 const IMAGE_URL_2: &str = "https://rustacean.net/assets/rustlogo.png";
 
-async fn message(ctx: &Context, msg: Message) -> Result<(), serenity::Error> {
+async fn message(ctx: &Context, msg: Message) -> Result<(), skua::Error> {
     let channel_id = msg.channel_id;
     let guild_id = msg.guild_id.unwrap();
     if let Some(_args) = msg.content.strip_prefix("testmessage ") {
@@ -166,7 +166,7 @@ async fn message(ctx: &Context, msg: Message) -> Result<(), serenity::Error> {
             )
             .await?;
     } else if msg.content == "embedrace" {
-        use serenity::futures::StreamExt;
+        use skua::futures::StreamExt;
         use tokio::time::Duration;
 
         let mut msg = channel_id
@@ -174,7 +174,7 @@ async fn message(ctx: &Context, msg: Message) -> Result<(), serenity::Error> {
             .await?;
 
         let msg_id = msg.id;
-        let mut message_updates = serenity::collector::collect(&ctx.shard, move |ev| match ev {
+        let mut message_updates = skua::collector::collect(&ctx.shard, move |ev| match ev {
             Event::MessageUpdate(x) if x.id == msg_id => Some(()),
             _ => None,
         });
@@ -218,7 +218,7 @@ async fn message(ctx: &Context, msg: Message) -> Result<(), serenity::Error> {
             .await?;
     } else if let Some(forum_post_url) = msg.content.strip_prefix("deleteforumpost ") {
         let (_guild_id, channel_id, _message_id) =
-            serenity::utils::parse_message_url(forum_post_url).unwrap();
+            skua::utils::parse_message_url(forum_post_url).unwrap();
         msg.channel_id.say(ctx, format!("Deleting <#{}> in 10 seconds...", channel_id)).await?;
         tokio::time::sleep(std::time::Duration::from_secs(10)).await;
         channel_id.delete(ctx).await?;
@@ -233,7 +233,7 @@ async fn message(ctx: &Context, msg: Message) -> Result<(), serenity::Error> {
 async fn interaction(
     ctx: &Context,
     interaction: CommandInteraction,
-) -> Result<(), serenity::Error> {
+) -> Result<(), skua::Error> {
     if interaction.data.name == "editattachments" {
         // Respond with an image
         interaction
@@ -368,7 +368,7 @@ async fn interaction(
 }
 
 struct Handler;
-#[serenity::async_trait]
+#[skua::async_trait]
 impl EventHandler for Handler {
     async fn message(&self, ctx: Context, msg: Message) {
         message(&ctx, msg).await.unwrap();
@@ -399,7 +399,7 @@ impl EventHandler for Handler {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), serenity::Error> {
+async fn main() -> Result<(), skua::Error> {
     if let Some(arg) = std::env::args().nth(1) {
         if arg == "--print-sizes" {
             model_type_sizes::print_ranking();

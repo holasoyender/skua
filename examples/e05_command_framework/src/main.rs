@@ -3,8 +3,8 @@
 //! This can be enabled by specifying the feature in the dependency section:
 //!
 //! ```toml
-//! [dependencies.serenity]
-//! git = "https://github.com/serenity-rs/serenity.git"
+//! [dependencies.skua]
+//! git = "https://github.com/holasoyender/skua.git"
 //! features = ["framework", "standard_framework"]
 //! ```
 #![allow(deprecated)] // We recommend migrating to poise, instead of using the standard command framework.
@@ -13,11 +13,11 @@ use std::env;
 use std::fmt::Write;
 use std::sync::Arc;
 
-use serenity::async_trait;
-use serenity::builder::EditChannel;
-use serenity::framework::standard::buckets::{LimitedFor, RevertBucket};
-use serenity::framework::standard::macros::{check, command, group, help, hook};
-use serenity::framework::standard::{
+use skua::async_trait;
+use skua::builder::EditChannel;
+use skua::framework::standard::buckets::{LimitedFor, RevertBucket};
+use skua::framework::standard::macros::{check, command, group, help, hook};
+use skua::framework::standard::{
     help_commands,
     Args,
     BucketBuilder,
@@ -30,14 +30,14 @@ use serenity::framework::standard::{
     Reason,
     StandardFramework,
 };
-use serenity::gateway::ShardManager;
-use serenity::http::Http;
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
-use serenity::model::id::UserId;
-use serenity::model::permissions::Permissions;
-use serenity::prelude::*;
-use serenity::utils::{content_safe, ContentSafeOptions};
+use skua::gateway::ShardManager;
+use skua::http::Http;
+use skua::model::channel::Message;
+use skua::model::gateway::Ready;
+use skua::model::id::UserId;
+use skua::model::permissions::Permissions;
+use skua::prelude::*;
+use skua::utils::{content_safe, ContentSafeOptions};
 
 // A container type is created for inserting into the Client's `data`, which allows for data to be
 // accessible across all events and framework commands, or anywhere else that has a copy of the
@@ -190,8 +190,8 @@ async fn dispatch_error(ctx: &Context, msg: &Message, error: DispatchError, _com
 
 // You can construct a hook without the use of a macro, too.
 // This requires some boilerplate though and the following additional import.
-use serenity::futures::future::BoxFuture;
-use serenity::FutureExt;
+use skua::futures::future::BoxFuture;
+use skua::FutureExt;
 fn _dispatch_error_no_macro<'fut>(
     ctx: &'fut mut Context,
     msg: &'fut Message,

@@ -4,13 +4,13 @@ use std::sync::Arc;
 use std::time::Duration;
 
 use chrono::offset::Utc;
-use serenity::async_trait;
-use serenity::builder::{CreateEmbed, CreateMessage};
-use serenity::gateway::ActivityData;
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
-use serenity::model::id::{ChannelId, GuildId};
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::builder::{CreateEmbed, CreateMessage};
+use skua::gateway::ActivityData;
+use skua::model::channel::Message;
+use skua::model::gateway::Ready;
+use skua::model::id::{ChannelId, GuildId};
+use skua::prelude::*;
 
 struct Handler {
     is_loop_running: AtomicBool,

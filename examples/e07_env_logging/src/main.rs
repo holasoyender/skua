@@ -2,13 +2,13 @@
 
 use std::env;
 
-use serenity::async_trait;
-use serenity::framework::standard::macros::{command, group, hook};
-use serenity::framework::standard::{CommandResult, Configuration, StandardFramework};
-use serenity::model::channel::Message;
-use serenity::model::event::ResumedEvent;
-use serenity::model::gateway::Ready;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::framework::standard::macros::{command, group, hook};
+use skua::framework::standard::{CommandResult, Configuration, StandardFramework};
+use skua::model::channel::Message;
+use skua::model::event::ResumedEvent;
+use skua::model::gateway::Ready;
+use skua::prelude::*;
 use tracing::{debug, error, info, instrument};
 
 struct Handler;

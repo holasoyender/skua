@@ -1,4 +1,4 @@
-use serenity::builder::CreateCommand;
+use skua::builder::CreateCommand;
 
 pub fn register() -> CreateCommand {
     CreateCommand::new("wonderful_command").description("An amazing command")

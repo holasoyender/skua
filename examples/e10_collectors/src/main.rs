@@ -5,10 +5,10 @@ use std::collections::HashSet;
 use std::env;
 use std::time::Duration;
 
-use serenity::async_trait;
-use serenity::collector::MessageCollector;
-use serenity::framework::standard::macros::{command, group, help};
-use serenity::framework::standard::{
+use skua::async_trait;
+use skua::collector::MessageCollector;
+use skua::framework::standard::macros::{command, group, help};
+use skua::framework::standard::{
     help_commands,
     Args,
     CommandGroup,
@@ -18,10 +18,10 @@ use serenity::framework::standard::{
     StandardFramework,
 };
 // Collectors are streams, that means we can use `StreamExt` and `TryStreamExt`.
-use serenity::futures::stream::StreamExt;
-use serenity::http::Http;
-use serenity::model::prelude::*;
-use serenity::prelude::*;
+use skua::futures::stream::StreamExt;
+use skua::http::Http;
+use skua::model::prelude::*;
+use skua::prelude::*;
 
 #[group("collector")]
 #[commands(challenge)]
@@ -167,7 +167,7 @@ async fn challenge(ctx: &Context, msg: &Message, _: Args) -> CommandResult {
     // We can also collect arbitrary events using the collect() function. For example, here we
     // collect updates to the messages that the user sent above and check for them updating all 5
     // of them.
-    let mut collector = serenity::collector::collect(&ctx.shard, move |event| match event {
+    let mut collector = skua::collector::collect(&ctx.shard, move |event| match event {
         // Only collect MessageUpdate events for the 5 MessageIds we're interested in.
         Event::MessageUpdate(event) if collected.iter().any(|msg| event.id == msg.id) => {
             Some(event.id)

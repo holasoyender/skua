@@ -1,7 +1,7 @@
 use crate::all::{Builder, ButtonStyle, CacheHttp, CreateActionRow, CreateAllowedMentions, CreateAttachment, CreateButton, CreateEmbed, CreateInteractionResponse, CreateInteractionResponseFollowup, CreateInteractionResponseMessage, InteractionId, InteractionResponseFlags};
 use crate::model::emoji::Emoji;
 
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Serialize)]
 pub struct CommandInteractionReply {
     #[serde(skip_serializing_if = "Option::is_none")]
     tts: Option<bool>,

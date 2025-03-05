@@ -2,8 +2,8 @@ use std::env;
 use std::time::Duration;
 
 use dotenv::dotenv;
-use serenity::async_trait;
-use serenity::builder::{
+use skua::async_trait;
+use skua::builder::{
     CreateButton,
     CreateInteractionResponse,
     CreateInteractionResponseMessage,
@@ -12,9 +12,9 @@ use serenity::builder::{
     CreateSelectMenuKind,
     CreateSelectMenuOption,
 };
-use serenity::futures::StreamExt;
-use serenity::model::prelude::*;
-use serenity::prelude::*;
+use skua::futures::StreamExt;
+use skua::model::prelude::*;
+use skua::prelude::*;
 
 fn sound_button(name: &str, emoji: ReactionType) -> CreateButton {
     // To add an emoji to buttons, use .emoji(). The method accepts anything ReactionType or

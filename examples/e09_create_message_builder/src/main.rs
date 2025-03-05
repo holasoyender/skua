@@ -1,11 +1,11 @@
 use std::env;
 
-use serenity::async_trait;
-use serenity::builder::{CreateAttachment, CreateEmbed, CreateEmbedFooter, CreateMessage};
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
-use serenity::model::Timestamp;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::builder::{CreateAttachment, CreateEmbed, CreateEmbedFooter, CreateMessage};
+use skua::model::channel::Message;
+use skua::model::gateway::Ready;
+use skua::model::Timestamp;
+use skua::prelude::*;
 
 struct Handler;
 

@@ -1,9 +1,9 @@
-use serenity::builder::*;
-use serenity::model::prelude::*;
-use serenity::prelude::*;
-use serenity::utils::CreateQuickModal;
+use skua::builder::*;
+use skua::model::prelude::*;
+use skua::prelude::*;
+use skua::utils::CreateQuickModal;
 
-pub async fn run(ctx: &Context, interaction: &CommandInteraction) -> Result<(), serenity::Error> {
+pub async fn run(ctx: &Context, interaction: &CommandInteraction) -> Result<(), skua::Error> {
     let modal = CreateQuickModal::new("About you")
         .timeout(std::time::Duration::from_secs(600))
         .short_field("First name")

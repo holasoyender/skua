@@ -2,11 +2,11 @@ mod commands;
 
 use std::env;
 
-use serenity::async_trait;
-use serenity::model::application::{Command, Interaction};
-use serenity::model::gateway::Ready;
-use serenity::model::id::GuildId;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::model::application::{Command, Interaction};
+use skua::model::gateway::Ready;
+use skua::model::id::GuildId;
+use skua::prelude::*;
 
 struct Handler;
 

@@ -1,4 +1,4 @@
-use serenity::model::prelude::*;
+use skua::model::prelude::*;
 
 pub fn print_ranking() {
     let sizes = [

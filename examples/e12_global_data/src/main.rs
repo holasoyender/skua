@@ -7,12 +7,12 @@ use std::env;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
 
-use serenity::async_trait;
-use serenity::framework::standard::macros::{command, group, hook};
-use serenity::framework::standard::{Args, CommandResult, Configuration, StandardFramework};
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
-use serenity::prelude::*;
+use skua::async_trait;
+use skua::framework::standard::macros::{command, group, hook};
+use skua::framework::standard::{Args, CommandResult, Configuration, StandardFramework};
+use skua::model::channel::Message;
+use skua::model::gateway::Ready;
+use skua::prelude::*;
 
 // A container type is created for inserting into the Client's `data`, which allows for data to be
 // accessible across all events and framework commands, or anywhere else that has a copy of the
